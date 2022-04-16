@@ -18,8 +18,8 @@ spec:
   handler: main:handler
   eventTimeout: 30s
   build:
-    image: cvat/ultralytics-yolov5-custom
-    baseImage: ultralytics/yolov5-custom:latest-cpu
+    image: cvat/ultralytics-yolov5
+    baseImage: ultralytics/yolov5:latest-cpu
 
     directives:
       preCopy:

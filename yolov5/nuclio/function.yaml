@@ -1,0 +1,48 @@
+metadata:
+  name: ultralytics-yolov5_custom
+  namespace: cvat
+  annotations:
+    name: YOLO v5 Custom Model
+    type: detector
+    framework: pytorch
+    spec: |
+      [
+        { "id": 0, "name": "barriers" },
+        { "id": 1, "name": "sidewalks" },
+        { "id": 2, "name": "pothole" }
+      ]
+
+spec:
+  description: YOLO v5 via pytorch hub
+  runtime: 'python:3.6'
+  handler: main:handler
+  eventTimeout: 30s
+  build:
+    image: cvat/ultralytics-yolov5_custom
+    baseImage: ultralytics/yolov5_custom:latest-cpu
+
+    directives:
+      preCopy:
+        - kind: USER
+          value: root
+        - kind: RUN
+          value: apt update && apt install --no-install-recommends -y libglib2.0-0
+        - kind: WORKDIR
+          value: /opt/nuclio
+
+  triggers:
+    myHttpTrigger:
+      maxWorkers: 2
+      kind: 'http'
+      workerAvailabilityTimeoutMilliseconds: 10000
+      attributes:
+        port: 32512
+        maxRequestBodySize: 33554432 # 32MB
+
+  platform:
+    attributes:
+      restartPolicy:
+        name: always
+        maximumRetryCount: 3
+      mountMode: volume
+      network: cvat_cvat

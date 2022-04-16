@@ -1,8 +1,8 @@
 metadata:
-  name: ultralytics-yolov5-custom
+  name: ultralytics-yolov5
   namespace: cvat
   annotations:
-    name: YOLO v5 Custom Model
+    name: YOLO v5
     type: detector
     framework: pytorch
     spec: |
@@ -20,6 +20,7 @@ spec:
   build:
     image: cvat/ultralytics-yolov5
     baseImage: ultralytics/yolov5:latest-cpu
+
     directives:
       preCopy:
         - kind: USER

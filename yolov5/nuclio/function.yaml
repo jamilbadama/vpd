@@ -20,14 +20,14 @@ spec:
   # build:
   #   image: cvat/ultralytics-yolov5
   #   baseImage: ultralytics/yolov5:latest-cpu
-    # directives:
-    #   preCopy:
-    #     - kind: USER
-    #       value: root
-    #     - kind: RUN
-    #       value: apt update && apt install --no-install-recommends -y libglib2.0-0
-    #     - kind: WORKDIR
-    #       value: /opt/nuclio
+    directives:
+      preCopy:
+        - kind: USER
+          value: root
+        - kind: RUN
+          value: apt update && apt install --no-install-recommends -y libglib2.0-0
+        - kind: WORKDIR
+          value: /opt/nuclio
 
   triggers:
     myHttpTrigger:

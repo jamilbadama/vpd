@@ -1,5 +1,5 @@
 metadata:
-  name: ultralytics-yolov5_custom
+  name: ultralytics-yolov5-custom
   namespace: cvat
   annotations:
     name: YOLO v5 Custom Model
@@ -18,8 +18,8 @@ spec:
   handler: main:handler
   eventTimeout: 30s
   build:
-    image: cvat/ultralytics-yolov5_custom
-    baseImage: ultralytics/yolov5_custom:latest-cpu
+    image: cvat/ultralytics-yolov5-custom
+    baseImage: ultralytics/yolov5-custom:latest-cpu
 
     directives:
       preCopy:
